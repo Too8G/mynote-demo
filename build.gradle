@@ -1,0 +1,39 @@
+plugins {
+    id 'java'
+    id 'groovy'
+    id 'idea'
+}
+
+group = 'org.zn.demo'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'org.codehaus.groovy', name: 'groovy-all', version: '2.5.7', ext: 'pom'
+}
+
+sourceSets {
+    main {
+        java { srcDir 'src/main/groovy' }
+        groovy { srcDir 'src/main/groovy' }
+        resources { srcDir 'src/main/resources' }
+    }
+    test {
+        java { srcDir 'src/test/java' }
+        groovy { srcDir 'src/test/groovy' }
+        resources { srcDir 'src/test/resources' }
+    }
+}
+
+task createDirs() {
+    sourceSets*.java.srcDirs*.each { it.mkdirs() }
+    sourceSets*.groovy.srcDirs*.each { it.mkdirs() }
+    sourceSets*.resources.srcDirs*.each { it.mkdirs() }
+} 
+        
+       
